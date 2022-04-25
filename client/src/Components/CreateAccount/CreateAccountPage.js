@@ -31,6 +31,22 @@ function CreateAccountPage() {
 
   let handleSubmit = async (event) => {
     event.preventDefault();
+    const newAccountInfo = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      username: username,
+      password: password,
+    };
+    let result = await fetch("/createAccount", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newAccountInfo),
+    }).then((res) => res.text());
+    console.log("DO you work?");
+    console.log("Fetch result: ", result);
   };
 
   return (
@@ -92,7 +108,12 @@ function CreateAccountPage() {
           </div>
           <div className={styles.CreateAccountBoxRight}>
             <form id="form2">
-              <input type="submit" value="Create Account" form="form1"></input>
+              <input
+                type="submit"
+                value="Create Account"
+                form="form1"
+                onClick={handleSubmit}
+              ></input>
             </form>
           </div>
         </div>

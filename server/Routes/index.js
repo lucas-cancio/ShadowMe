@@ -1,10 +1,12 @@
 const express = require("express");
 
 //import routes
-const myRoute = require("./myRoute.js");
+const myRouter = require("./myRoute.js");
+const createAccountRoute = require("./createAccountRoute.js");
 
 //amalgamate routes
-let routes = [];
-routes.push({ name: "myRoute", route: myRoute });
+let routers = [];
+routers.push({ router: myRouter.myRouter });
+routers.push({ router: createAccountRoute.router });
 
-module.exports = routes;
+module.exports = { routers };
