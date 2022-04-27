@@ -7,6 +7,7 @@ function CreateAccountPage() {
   const [email, changeEmail] = useState("");
   const [username, changeUsername] = useState("");
   const [password, changePassword] = useState("");
+  const [confirmPassword, changeConfirmPassword] = useState("");
 
   let handleFirstNameChange = (event) => {
     changeFirstName(event.target.value);
@@ -28,6 +29,10 @@ function CreateAccountPage() {
     changePassword(event.target.value);
     console.log("Password: ", password);
   };
+  let handleConfirmPasswordChange = (event) => {
+    changeConfirmPassword(event.target.value);
+    console.log("Confirm Password: ", confirmPassword);
+  };
 
   let handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,6 +43,17 @@ function CreateAccountPage() {
       username: username,
       password: password,
     };
+
+    if (
+      firstName == "" ||
+      lastName == "" ||
+      email == "" ||
+      username == "" ||
+      password == "" ||
+      confirmPassword != password
+    )
+      return;
+
     let result = await fetch("/createAccount", {
       method: "POST",
       headers: {
@@ -47,6 +63,11 @@ function CreateAccountPage() {
     }).then((res) => res.text());
     console.log("DO you work?");
     console.log("Fetch result: ", result);
+    if (result) {
+      window.location.href = "/dashboard";
+    } else {
+      console.log("Failure to create account");
+    }
   };
 
   return (
@@ -97,11 +118,19 @@ function CreateAccountPage() {
                 ></input>
                 <label for="Password">Password</label>
                 <input
-                  type="text"
+                  type="Password"
                   id="Password"
                   name="Password"
                   placeholder="Password"
                   onChange={handlePasswordChange}
+                ></input>
+                <label for="Confirm Password">Confirm Password</label>
+                <input
+                  type="Password"
+                  id="Confirm Password"
+                  name="Confirm Password"
+                  placeholder="Confirm Password"
+                  onChange={handleConfirmPasswordChange}
                 ></input>
               </form>
             </div>

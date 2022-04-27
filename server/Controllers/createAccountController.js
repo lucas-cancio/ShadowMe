@@ -1,8 +1,12 @@
-exports.testCallback = (req, res) => {
-  res.send("Wow this works");
+const createAccountService = require("../Services/createAccount.js");
+
+const getCallback = async (req, res) => {
+  res.send("Hellow there");
 };
 
-exports.postCallback = (req, res) => {
-  console.log(req.body);
-  res.send("I received a POST request");
+const postCallback = async (req, res) => {
+  let result = await createAccountService(req.body);
+  res.send(result);
 };
+
+module.exports = { getCallback, postCallback };

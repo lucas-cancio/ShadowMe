@@ -21,11 +21,21 @@ function LoginPage() {
   let handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Submitted");
-    let response = await fetch("/api")
-      .then((res) => res.json())
-      .then((data) => data["message"]);
-    console.log("Response: ", response);
-    changeMsg(response);
+    const loginInfo = {
+      email: email,
+    };
+    let result = await fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginInfo),
+    }).then((res) => res.text());
+    console.log("Response: ", result);
+
+    //if login is successful, change to dashboard page
+    if (result) window.location.href = "/dashboard";
+    else changeMsg("Incorrect login information");
   };
 
   return (
