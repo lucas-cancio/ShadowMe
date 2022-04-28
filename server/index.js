@@ -1,10 +1,8 @@
 const express = require("express");
 const myRouters = require("./Routes/index.js");
-const path = require("path");
-// app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 const app = express();
-const PORT = process.env.YOUR_PORT || process.env.PORT || 80;
+const PORT = 3001;
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
