@@ -4,7 +4,7 @@ const path = require("path");
 // app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.YOUR_PORT || process.env.PORT || 80;
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
