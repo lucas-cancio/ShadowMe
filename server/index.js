@@ -1,7 +1,7 @@
 const express = require("express");
 const myRouters = require("./Routes/index.js");
 const path = require("path");
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+// app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 const app = express();
 const PORT = 3001;
